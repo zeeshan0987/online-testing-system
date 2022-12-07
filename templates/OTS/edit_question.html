@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Question</title>
+</head>
+<body>
+    <div class="menu">
+        {% if request.session.username == 'admin' %}
+        <!--menu for admin-->
+        <a href="http://localhost:8000/OTS/new-question/" >New</a>
+        <a href="http://localhost:8000/OTS/view-question/" >View All</a>
+        <a href="http://localhost:8000/OTS/logout/" >Logout</a>
+        {% else %}
+
+        <!--menu for Learner-->
+        <a href="http://localhost:8000/OTS/start-test/" >Start Test</a>
+        <a href="http://localhost:8000/OTS/logout/" >Logout</a>
+        {% endif %}
+    </div>
+    <h1>Edit Question</h1>
+    <form action="http://localhost:8000/OTS/edit-save-question/" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="qno" value="{{question.qno}}">
+        <div class="title">Question Statment</div>
+        <div class="deta"><textarea name="que" id="" cols="30" rows="10">{{question.que}}</textarea></div>
+
+        <div class="titel">Qption a</div>
+        <div class="deta"><input type="text" name="optiona" id="" value="{{question.optiona}}"></div>
+        <div class="titel">Qption b</div>
+        <div class="deta"><input type="text" name="optionb" id="" value="{{question.optionb}}"></div>
+        <div class="titel">Qption c</div>
+        <div class="deta"><input type="text" name="optionc" id="" value="{{question.optionc}}"></div>
+        <div class="titel">Qption d</div>
+        <div class="deta"><input type="text" name="optiond" id="" value="{{question.optiond}}"></div>
+        <div class="titel">Answer</div>
+        <div class="deta">
+            <select name="answer" id="">
+                <option value="a" {% if question.answer == "a" %} selected {% endif %}>a</option>
+                <option value="b" {% if question.answer == "b" %} selected {% endif %}>b</option>
+                <option value="c" {% if question.answer == "c" %} selected {% endif %}>c</option>
+                <option value="d" {% if question.answer == "d" %} selected {% endif %}>d</option>
+            </select>
+        </div>
+        <div><input type="submit" value="save"></div>
+
+    </form>
+    
+</body>
+</html>

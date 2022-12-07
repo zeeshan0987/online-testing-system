@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Question</title>
+</head>
+<body>
+    <div class="menu">
+        {% if request.session.username == 'admin' %}
+        <!--menu for admin-->
+        <a href="http://localhost:8000/OTS/new-question/" >New</a>
+        <a href="http://localhost:8000/OTS/view-question/" >View All</a>
+        <a href="http://localhost:8000/OTS/logout/" >Logout</a>
+        {% else %}
+
+        <!--menu for Learner-->
+        <a href="http://localhost:8000/OTS/start-test/" >Start Test</a>
+        <a href="http://localhost:8000/OTS/logout/" >Logout</a>
+        {% endif %}
+    </div>
+    <h1>New Question</h1>
+    <form action="http://localhost:8000/OTS/save-question/" method="post">
+        {% csrf_token %}
+        <div class="title">Question Statment</div>
+        <div class="deta"><textarea name="question" id="" cols="30" rows="10"></textarea></div>
+
+        <div class="titel">Qption a</div>
+        <div class="deta"><input type="text" name="optiona" id=""></div>
+        <div class="titel">Qption b</div>
+        <div class="deta"><input type="text" name="optionb" id=""></div>
+        <div class="titel">Qption c</div>
+        <div class="deta"><input type="text" name="optionc" id=""></div>
+        <div class="titel">Qption d</div>
+        <div class="deta"><input type="text" name="optiond" id=""></div>
+        <div class="titel">Answer</div>
+        <div class="deta">
+            <select name="answer" id="">
+                <option value="a">a</option>
+                <option value="b">b</option>
+                <option value="c">c</option>
+                <option value="d">d</option>
+            </select>
+        </div>
+        <div><input type="submit" value="Save"></div>
+
+    </form>
+    
+</body>
+</html>

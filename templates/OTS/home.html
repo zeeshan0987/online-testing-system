@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <div class="menu">
+        {% if request.session.username == 'admin' %}
+        <!--menu for admin-->
+        <a href="http://localhost:8000/OTS/new-question/" >New</a>
+        <a href="http://localhost:8000/OTS/view-question/" >View All</a>
+        <a href="http://localhost:8000/OTS/logout/" >Logout</a>
+        {% else %}
+
+        <!--menu for Learner-->
+        <a href="http://localhost:8000/OTS/start-test/" >Start Test</a>
+        <a href="http://localhost:8000/OTS/logout/" >Logout</a>
+        {% endif %}
+    </div>
+    <h1>Welcome {{request.session.realname}} To Online Testing System</h1>
+    
+</body>
+</html>
